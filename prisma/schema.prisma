@@ -31,3 +31,9 @@ model Session{
   user       User     @relation(fields: [userId], references: [id])
 }
 
+model Category{
+  id String @id @default(uuid())
+  name String   @unique
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+}

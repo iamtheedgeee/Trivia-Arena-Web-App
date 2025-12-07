@@ -9,6 +9,7 @@ api.interceptors.response.use(
     (error:AxiosError)=>{
         if(error.response){
             const message=(error.response.data as errorObject).error || "Something Went wrong"
+            console.log(message)
             throw new Error(message)
         }
         throw new Error("Network Error")

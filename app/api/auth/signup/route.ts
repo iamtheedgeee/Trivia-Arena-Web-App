@@ -27,6 +27,6 @@ export async function POST(req:Request){
 
         return NextResponse.json({success:true,user},{status:201})
     } catch(error){
-        return NextResponse.json({error:"System Error"},{status:500})
+        return NextResponse.json({success:false,error:"System Error"},{status:500})
     }
 }

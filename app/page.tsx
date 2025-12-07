@@ -2,17 +2,27 @@ import {Button} from "@/components/ui/button"
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 import { AUTH_OPTIONS } from "./api/auth/[...nextauth]/route"
-import { signOut } from "next-auth/react"
+import { Input } from "@/components/ui/input"
+import CategoryGrid from "@/components/CategoryGrid"
 
-export default async function Home() {
-  const session=await getServerSession(AUTH_OPTIONS)
-  console.log(session?.user.user)
+interface SearchParams {
+  [key: string]: string | string[] | undefined;
+}
+
+
+export default async function Home({searchParams}:{searchParams:Promise<SearchParams>}){
+  const params= await searchParams
+  const success= params.success
+  const session=await getServerSession(AUTH_OPTIONS)  
   if(!session) redirect("/auth/signup")
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <form method="post" action="/api/auth/signout">
-        <Button type="submit">Click me{session?.user.username}</Button>
-        </form>
+    <div>
+      <form method="POST" action="/api/category" className="flex">
+        <Input type="text" placeholder="Category Name" name="category" className="text-center" required/>
+        <Button type="submit">Add</Button>
+      </form>
+      {success==="true"?<div className="fixed bottom-10 right-10 z-50 w-10 h-10 rounded-full bg-green-500"/>:<div className="fixed bottom-10 right-10 z-50 w-10 h-10 rounded-full bg-red-500"/>}
+      <CategoryGrid/>
     </div>
   );
 }
