@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "moduleResolution": "node"
   },
-  "include": ["server.ts"]
+  "include": ["server"]
 }

@@ -1,29 +1,13 @@
 "use client"
-
-import useQuery from "@/hooks/useQuery"
+import { useCatgoryContext } from "@/hooks/CategoryContext"
 import CategoryCard from "./CategoryCard"
-import { useEffect, useState } from "react"
-interface Category{
-    name:string;
-    id:string;
-}
 export default function CategoryGrid(){
-    const [categories,setCategories]=useState<Category[]>([])
-    const {loading,error,fetchData}=useQuery('/api/category')
-    async function getCategories(){
-        const data=await fetchData()
-        setCategories(data.categories as Category[])
-    }
-    useEffect(()=>{
-        getCategories()
-    },[])
-    if(loading) return <div className="text-blue-500">Loading.....</div>
-    if(error) return <div className="text-red-400">{error}</div>
+    const {currentList}=useCatgoryContext()
     return(
-        <div className="flex flex-wrap gap-5">
-            {categories.length>0?categories.map((category)=>{
+        <div className="grid grid-cols-3 gap-3">
+            {currentList.length>0?currentList.map((category)=>{
                 return <CategoryCard category={category} key={category.id}/>
-            }):<div>Empty</div>}
+            }):<div>No Results</div>}
         </div>
     )
         
