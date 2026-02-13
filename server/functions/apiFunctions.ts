@@ -1,6 +1,6 @@
 import Groq from "groq-sdk"
 import {z} from "zod"
-import { AnswerCheckList, FreeResponseListSchema, FreeResponseQuestionSchema, AnswerCheckSchema } from "../schema/questions"
+import { AnswerCheckList, FreeResponseListSchema, FreeResponseQuestionSchema, AnswerCheckSchema } from "../schema/questions.js"
 interface FreeResponseQuestion extends z.infer<typeof FreeResponseQuestionSchema>{}
 interface AnswerCheck extends z.infer<typeof AnswerCheckSchema>{}
 const client=new Groq({apiKey:process.env.GROQ_API_KEY})
@@ -116,6 +116,7 @@ export const judgeAnswers=async(question:Question,category:string)=>{
         You are an assistant that evaluates answers for correctness.
         Your task is to return **only a JSON object** of an array with each items being in the EXACT format {"id":*given id*,"correct":*boolean indicating whether the answer associated with the given id is correct*}
         For example, for {"id":"12u4bdeo","answer":"America" }, return {"id":"12u4bdeo","answer":true} if "America" is the answer to the given question under the given topic and "correct":false if it is not.
+        Mark every answer "i dont know" or "timed out" as false. if the answer given is unclear or ambiguos or in any way an attempt o give multiple answers, mark it as false as well
         Do this for every object in the given Answer array,for the given question under the given category.
     
         Here is the information:

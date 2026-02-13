@@ -1,15 +1,10 @@
 import CategoryGrid from "@/components/CategoryGrid"
 import Logo from "@/components/Logo"
 import SearchInput from "@/components/SearchInput"
-import prisma from "@/lib/prisma"
 import CategoryProvider from "@/hooks/CategoryContext";
+import categories from "@/categories.json"
 export default async function Home(){
   try{
-    const categories=await prisma.category.findMany({
-      select:{
-        name:true,id:true
-      }
-    })
     return (
       <div className="flex flex-col gap-y-2 p-3 sm:px-40 lg:px-60">
         <Logo/>
@@ -20,6 +15,7 @@ export default async function Home(){
       </div>
     );
   }catch(error){
+    console.log(error)
     return <div>Database error</div>
   }
   

@@ -6,7 +6,10 @@
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "paths": {
+        "@/*": ["./*"]
+      }
   },
-  "include": ["server"]
+  "include": ["server", "globals"]
 }

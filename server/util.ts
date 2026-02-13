@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma"
-async function Reset(){
+import prisma from "../lib/prisma.js"
+export async function Reset(){
     console.log("Starting")
     try{
         console.log("Deleting")

@@ -1,7 +1,7 @@
 import { Server } from "socket.io"
-import { dummyJudge, judgeAnswers } from "./apiFunctions"
-import EVENTS from "@/globals/constants/events"
-import { transformObject } from "./utils"
+import { dummyJudge, judgeAnswers } from "./apiFunctions.js"
+import EVENTS from "../../globals/constants/events.js"
+import { transformObject } from "./utils.js"
 
 export const startAutoSubmitTimer=(io:Server,room:Room)=>{
     room.countdownStartTimeStamp=Date.now()
@@ -33,10 +33,12 @@ export const checkAnswers=async (io:Server,room:Room)=>{
     try{
         verdict=await judgeAnswers(room.game.currentQuestion,room.category)
     }catch(error){
-        io.to(room.id).emit(EVENTS.ANSWER_CHECK_ERROR,error.message)
-        room.game.waitingPlayers=room.players
-        room.game.currentQuestion.answers=[]
-        return
+        if(error instanceof Error){
+            io.to(room.id).emit(EVENTS.ANSWER_CHECK_ERROR,error.message)
+            room.game.waitingPlayers=room.players
+            room.game.currentQuestion.answers=[]        
+        }
+            return
     }
     updateScore(room,verdict)
     //Compiling results innocently and peacefully

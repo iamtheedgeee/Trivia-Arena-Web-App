@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon --watch server --exec tsx server/app.ts",
     "build": "next build && tsc -p tsconfig.server.json",
-    "start": "NODE_ENV=production node dist/server/app.js",
+    "start": "cross-env NODE_ENV=production node dist/server/app.js",
     "lint": "eslint"
   },
   "type": "module",
@@ -49,6 +49,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "baseline-browser-mapping": "^2.9.5",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "tailwindcss": "^4",

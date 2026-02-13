@@ -1,15 +1,14 @@
-import "./dotenvSetup"
+import "./dotenvSetup.js"
 import { createServer} from "http"
 import { Server } from "socket.io"
 import next from "next"
-import prisma from "@/lib/prisma"
-
-import roomHandlers from "./handlers/roomHandlers"
-import gameHandlers from "./handlers/gameHandlers"
-import questionHandlers from "./handlers/questionHandlers"
-import { rooms } from "./rooms"
-import { isMemberOfRoom } from "./functions/utils"
-import EVENTS from "@/globals/constants/events"
+import roomHandlers from "./handlers/roomHandlers.js"
+import gameHandlers from "./handlers/gameHandlers.js"
+import questionHandlers from "./handlers/questionHandlers.js"
+import { rooms } from "./rooms.js"
+import { isMemberOfRoom } from "./functions/utils.js"
+import EVENTS from "../globals/constants/events.js"
+import { Reset } from "./util.js"
 const dev= process.env.NODE_ENV!="production"
 const app=next({dev})
 const handle= app.getRequestHandler()
@@ -58,13 +57,7 @@ async function startServer(){
             console.log(`User ${clientId} disconnected`)
         })
     })
-    
-    try{
-        await prisma.$connect()
-    }catch(error){
-        console.log(error)
-        return
-    }
+    console.log("starting server")
     server.listen(PORT,()=>{
         console.log(`> Server running on http://localhost:${PORT}`)
     })

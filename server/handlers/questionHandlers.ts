@@ -1,8 +1,8 @@
 import { Server, Socket } from "socket.io";
-import { rooms } from "../rooms";
-import { checkAnswers, startAutoSubmitTimer } from "../functions/serverFunctions";
-import EVENTS from "@/globals/constants/events";
-import { isMemberOfRoom, transformObject } from "../functions/utils";
+import { rooms } from "../rooms.js";
+import { checkAnswers, startAutoSubmitTimer } from "../functions/serverFunctions.js";
+import EVENTS from "../../globals/constants/events.js";
+import { isMemberOfRoom, transformObject } from "../functions/utils.js";
 
 export default function questionHandlers(io:Server,socket:Socket){
     const {clientId}=socket.handshake.auth as {clientId:string}

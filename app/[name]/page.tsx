@@ -1,8 +1,8 @@
 import { LogoImage } from "@/components/Logo";
 import StartButton from "@/components/StartButton";
-import prisma from "@/lib/prisma";
 import {ArrowLeft} from "lucide-react"
 import Link from "next/link";
+import categories from "@/categories.json"
 
 interface CategoryPageProps{
     params:{
@@ -12,11 +12,7 @@ interface CategoryPageProps{
 export default async function Category({params}:CategoryPageProps){
     try{
         const{name}=await params
-        const category= await prisma.category.findUnique({
-            where:{
-                name:decodeURIComponent(name)
-            }
-        })
+        const category= categories.find(c=>c.name===decodeURIComponent(name))
         if(!category) return <div className="flex justify-center items-center">Not Found</div>
         
         return(

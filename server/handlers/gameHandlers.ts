@@ -1,8 +1,8 @@
 import { Server, Socket } from "socket.io"
-import { rooms } from "../rooms"
-import { getDummyQuestions, getQuestions } from "../functions/apiFunctions"
-import EVENTS from "@/globals/constants/events"
-import { transformObject } from "../functions/utils"
+import { rooms } from "../rooms.js"
+import { getDummyQuestions, getQuestions } from "../functions/apiFunctions.js"
+import EVENTS from "../../globals/constants/events.js"
+import { transformObject } from "../functions/utils.js"
 export default function GameHandlers(io:Server,socket:Socket){
     const {clientId}=socket.handshake.auth as {clientId:string}
     socket.on(EVENTS.SET_GAME,async (id:string)=>{

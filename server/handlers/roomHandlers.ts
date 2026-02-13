@@ -1,7 +1,7 @@
 import {Socket,Server} from "socket.io"
 
-import { rooms } from "../rooms"
-import EVENTS from "@/globals/constants/events"
+import { rooms } from "../rooms.js"
+import EVENTS from "../../globals/constants/events.js"
 export default function roomHandlers(io:Server,socket:Socket){
     const {clientId}=socket.handshake.auth as {clientId:string}
 

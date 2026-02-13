@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Trivia Arena
 
-## Getting Started
+Trivia Arena is a real-time multiplayer trivia web application where players compete in hosted games across multiple categories. Trivia questions are dynamically generated using **Groq AI**, and live gameplay is synchronized using **WebSockets**.
 
-First, run the development server:
+Players can host games, join rooms, and compete against others in an online trivia competition.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Status:** Work in progress,features are still evolving.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+- AI-generated trivia questions by category (Groq)
+- Real-time multiplayer gameplay
+- Host and join live trivia rooms
+- WebSocket-based game synchronization
+- Live competition experience
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
+- **Frontend:** Next.js, TypeScript, Tailwind CSS  
+- **Backend:** Node.js, Socket.IO  
+- **AI:** Groq API  
+- **Database:** PostgreSQL  
+- **Realtime:** WebSockets
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Status
+This project is under active development. APIs, game flow, and features are subject to change.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+TBD
